@@ -1,0 +1,15 @@
+.view { padding: 24px 20px; max-width: 580px; }
+.heading { font-family: 'DM Serif Display', Georgia, serif; font-size: 26px; margin-bottom: 4px; color: var(--ink); }
+.sub { color: var(--ink-muted); font-size: 13px; margin-bottom: 20px; }
+.empty { text-align: center; color: var(--ink-muted); padding: 40px 0; font-size: 14px; line-height: 1.7; }
+.label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-faint); margin-bottom: 8px; }
+.wantSection { margin-bottom: 8px; }
+.wantRow { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.wantName { font-weight: 500; color: var(--ink); }
+.removeBtn { background: none; border: none; color: var(--ink-faint); font-size: 16px; }
+.removeBtn:hover { color: var(--accent); }
+.shopItem { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.shopItem input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--accent); flex-shrink: 0; }
+.shopName { color: var(--ink); }
+.shopFrom { font-size: 11px; color: var(--ink-faint); margin-left: auto; text-align: right; max-width: 180px; }
+.checkedItem .shopName { text-decoration: line-through; color: var(--ink-faint); }

@@ -1,0 +1,59 @@
+.container { max-width: 680px; }
+.hero { width: 100%; max-height: 360px; object-fit: cover; display: block; }
+.inner { padding: 24px 20px; }
+
+.backBtn {
+  background: none; border: none; font-size: 14px; color: var(--ink-muted);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 20px; padding: 0;
+}
+.backBtn:hover { color: var(--ink); }
+.titleRow {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 4px;
+}
+.title { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; line-height: 1.1; margin-bottom: 6px; color: var(--ink); }
+.meta { color: var(--ink-muted); font-size: 13px; margin-bottom: 10px; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag { background: var(--tag-bg); color: var(--ink-muted); font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+.tagCat { background: var(--accent-light); color: var(--accent); }
+.actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; margin-top: 4px; flex-wrap: wrap; }
+.btnSec { padding: 6px 11px; background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--ink); transition: background 0.15s; }
+.btnSec:hover { background: var(--surface); }
+.wantBtn { background: none; border: 1px solid var(--border); border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--ink-faint); font-size: 15px; transition: all 0.15s; }
+.wantBtn:hover { border-color: var(--accent); color: var(--accent); }
+.wantActive { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+
+.section { margin-top: 24px; }
+.sectionLabel { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-faint); margin-bottom: 12px; }
+.sectionHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.sectionHeader .sectionLabel { margin-bottom: 0; }
+.servingsRow { display: flex; align-items: center; gap: 8px; }
+.servingsHint { font-size: 12px; color: var(--ink-muted); }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: white; }
+.stepBtn { background: none; border: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink-muted); }
+.stepBtn:hover { background: var(--surface); color: var(--ink); }
+.stepBtn:disabled { opacity: 0.3; cursor: not-allowed; }
+.stepVal { min-width: 64px; text-align: center; font-size: 13px; font-weight: 500; color: var(--ink); border-left: 1px solid var(--border); border-right: 1px solid var(--border); padding: 0 8px; line-height: 32px; white-space: nowrap; }
+.scaleBadge { font-size: 10px; color: var(--accent); }
+
+.ingGroup { margin-bottom: 16px; }
+.ingGroupHeader { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; padding-bottom: 5px; border-bottom: 1.5px solid var(--border-hover); }
+.ingList { list-style: none; }
+.ingItem { display: flex; gap: 12px; font-size: 14px; padding: 5px 0 5px 10px; border-bottom: 1px solid var(--border); }
+.ingItem:last-child { border-bottom: none; }
+.ingAmt { color: var(--ink-muted); min-width: 110px; font-size: 13px; flex-shrink: 0; }
+.scaled { color: var(--accent); font-weight: 500; }
+
+.stepsList { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.stepItem { display: flex; gap: 12px; }
+.stepNum { width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: white; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; }
+.stepBody { flex: 1; }
+.stepText { font-size: 14px; line-height: 1.65; }
+.stepSubs { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.stepSubs li { display: flex; gap: 8px; font-size: 13px; line-height: 1.6; color: var(--ink-muted); padding-left: 2px; }
+.stepSubs li::before { content: "•"; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+.notesBox { background: var(--surface); border-radius: 8px; padding: 12px 14px; font-size: 14px; color: var(--ink-muted); line-height: 1.65; }
+.deleteRow { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+.deleteBtn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-size: 13px; color: var(--ink-faint); transition: all 0.15s; }
+.deleteBtn:hover { border-color: #c0392b; color: #c0392b; }
