@@ -1,21 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#2A1F14"/>
-  <g stroke="#F5ECD7" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <!-- Fork: top-left to bottom-right -->
-    <!-- Tines -->
-    <line x1="18" y1="8" x2="15" y2="16" stroke-width="2"/>
-    <line x1="20" y1="8" x2="18" y2="17" stroke-width="2"/>
-    <line x1="22" y1="8" x2="21" y2="17" stroke-width="2"/>
-    <!-- Shaft -->
-    <line x1="19" y1="17" x2="26" y2="38" stroke-width="2.5"/>
-    <!-- Handle -->
-    <line x1="26" y1="38" x2="30" y2="56" stroke-width="4"/>
-    <!-- Knife: top-right to bottom-left -->
-    <!-- Blade -->
-    <path d="M45 8 Q47 12 44 22 L38 26" stroke-width="2.5"/>
-    <!-- Shaft -->
-    <line x1="41" y1="24" x2="36" y2="38" stroke-width="2.5"/>
-    <!-- Handle -->
-    <line x1="36" y1="38" x2="32" y2="56" stroke-width="4"/>
+  <g fill="#2A1F14">
+    <rect x="15" y="10" width="13" height="44" rx="2"/>
+    <polygon points="28,32 28,10 50,10 35,32"/>
+    <polygon points="28,32 28,54 50,54 35,32"/>
   </g>
 </svg>
