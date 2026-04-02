@@ -4,10 +4,20 @@ import { scaleAmt, formatQty } from '../lib/utils'
 import { copyRecipeText, copyRecipeImage } from '../lib/share'
 import styles from './RecipeDetail.module.css'
 
+function Lightbox({ src, onClose }) {
+  return (
+    <div className={styles.lightboxOverlay} onClick={onClose}>
+      <img className={styles.lightboxImg} src={src} alt="Full size" onClick={e => e.stopPropagation()} />
+      <button className={styles.lightboxClose} onClick={onClose}>×</button>
+    </div>
+  )
+}
+
 export default function RecipeDetail({ recipe: r, servings, setServings, onBack, onEdit, onToggleWant, onDeleted }) {
   const [copyTextLabel, setCopyTextLabel] = useState('Copy text')
   const [copyImgLabel, setCopyImgLabel] = useState('Copy image')
   const [deleting, setDeleting] = useState(false)
+  const [lightboxSrc, setLightboxSrc] = useState(null)
 
   const base = r.servings || 4
   const factor = servings / base
@@ -37,8 +47,15 @@ export default function RecipeDetail({ recipe: r, servings, setServings, onBack,
 
   return (
     <div className={styles.container}>
+      {lightboxSrc && <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />}
+
       {r.photo_url && (
-        <img className={styles.hero} src={r.photo_url} alt={r.name} />
+        <img
+          className={styles.hero}
+          src={r.photo_url}
+          alt={r.name}
+          onClick={() => setLightboxSrc(r.photo_url)}
+        />
       )}
 
       <div className={styles.inner}>

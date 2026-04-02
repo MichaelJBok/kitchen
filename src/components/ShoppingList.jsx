@@ -5,15 +5,17 @@ import styles from './ShoppingList.module.css'
 export default function ShoppingList({ recipes, getServings, onToggleWant }) {
   const [checked, setChecked] = useState({})
 
-  // Aggregate ingredients across all want-to-try recipes
   const agg = {}
   recipes.forEach(r => {
     const factor = getServings(r) / (r.servings || 4)
     ;(r.ing_groups || []).forEach(g => {
       ;(g.items || []).forEach(i => {
         const key = i.item.toLowerCase().replace(/[,()]/g, '').trim()
-        if (!agg[key]) agg[key] = { item: i.item, entries: [] }
-        agg[key].entries.push({ amt: scaleAmt(i.amt, factor), recipe: r.name })
+        if (!agg[key]) agg[key] = { item: i.item, amounts: [] }
+        const scaled = scaleAmt(i.amt, factor)
+        if (scaled && scaled !== 'to taste' && scaled !== 'as needed' && scaled !== 'optional' && scaled !== 'to serve') {
+          agg[key].amounts.push(scaled)
+        }
       })
     })
   })
@@ -42,7 +44,7 @@ export default function ShoppingList({ recipes, getServings, onToggleWant }) {
           </div>
 
           <div className={styles.label} style={{ marginTop: 24, marginBottom: 8 }}>Shopping list</div>
-          {Object.entries(agg).map(([key, { item, entries }]) => (
+          {Object.entries(agg).map(([key, { item, amounts }]) => (
             <div
               key={key}
               className={`${styles.shopItem} ${checked[key] ? styles.checkedItem : ''}`}
@@ -53,9 +55,9 @@ export default function ShoppingList({ recipes, getServings, onToggleWant }) {
                 onChange={() => toggle(key)}
               />
               <span className={styles.shopName}>{item}</span>
-              <span className={styles.shopFrom}>
-                {entries.map(e => `${e.amt} (${e.recipe})`).join(' + ')}
-              </span>
+              {amounts.length > 0 && (
+                <span className={styles.shopAmt}>{amounts.join(' + ')}</span>
+              )}
             </div>
           ))}
         </>

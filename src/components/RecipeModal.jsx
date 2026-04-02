@@ -42,6 +42,7 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
   const [aiStatus, setAiStatus] = useState('')
   const [aiLoading, setAiLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const [lightboxSrc, setLightboxSrc] = useState(null)
 
   // ── Photo handlers ──────────────────────────────────────────────
   async function handleRecipePhoto(e) {
@@ -202,6 +203,12 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
 
   return (
     <div className={styles.overlay} onClick={e => e.target === e.currentTarget && onClose()}>
+      {lightboxSrc && (
+        <div className={styles.lightboxOverlay} onClick={() => setLightboxSrc(null)}>
+          <img className={styles.lightboxImg} src={lightboxSrc} alt="Full size" onClick={e => e.stopPropagation()} />
+          <button className={styles.lightboxClose} onClick={() => setLightboxSrc(null)}>×</button>
+        </div>
+      )}
       <div className={styles.modal}>
         <div className={styles.header}>
           <h2>{isEdit ? 'Edit Recipe' : 'Add Recipe'}</h2>
@@ -214,7 +221,7 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
           <div className={styles.photoArea} onClick={() => document.getElementById('recipe-photo-input').click()}>
             <input type="file" id="recipe-photo-input" accept="image/*" style={{ display: 'none' }} onChange={handleRecipePhoto}/>
             {photoPreview
-              ? <img src={photoPreview} className={styles.photoPreview} alt="preview"/>
+              ? <img src={photoPreview} className={styles.photoPreview} alt="preview" onClick={e => { e.stopPropagation(); setLightboxSrc(photoPreview) }} style={{cursor:"zoom-in"}}/>
               : <div className={styles.photoPlaceholder}><span>＋</span> Click to add a photo</div>
             }
             {photoPreview && (
@@ -236,7 +243,7 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
             <div className={styles.cameraArea} onClick={() => document.getElementById('ai-photo-input').click()}>
               <input type="file" id="ai-photo-input" accept="image/*" capture="environment" style={{ display: 'none' }} onChange={handleAiPhoto}/>
               {aiPhotoPreview
-                ? <img src={aiPhotoPreview} className={styles.cameraPreview} alt="recipe card"/>
+                ? <img src={aiPhotoPreview} className={styles.cameraPreview} alt="recipe card" onClick={e => { e.stopPropagation(); setLightboxSrc(aiPhotoPreview) }} style={{cursor:"zoom-in"}}/>
                 : <div className={styles.cameraPlaceholder}>
                     <div className={styles.cameraIcon}>📷</div>
                     <div>Tap to open camera or choose photo</div>
