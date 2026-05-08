@@ -1,6 +1,6 @@
 import styles from './RecipesGrid.module.css'
 
-const CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip','Other']
+const DEFAULT_CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip','Other']
 
 export default function RecipesGrid({ recipes, loading, search, setSearch, catFilter, setCatFilter, onOpenDetail, onToggleWant, onAddRecipe }) {
   return (
@@ -27,7 +27,7 @@ export default function RecipesGrid({ recipes, loading, search, setSearch, catFi
           onChange={e => setCatFilter(e.target.value)}
         >
           <option value="">All categories</option>
-          {CATEGORIES.map(c => <option key={c}>{c}</option>)}
+          {[...new Set([...DEFAULT_CATEGORIES, ...recipes.map(r => r.category).filter(Boolean)])].sort().map(c => <option key={c}>{c}</option>)}
         </select>
         <button className={styles.addBtn} onClick={onAddRecipe}>+ Add Recipe</button>
       </div>

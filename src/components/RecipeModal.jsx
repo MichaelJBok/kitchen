@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabase'
 import { resizeImage } from '../lib/utils'
 import styles from './RecipeModal.module.css'
 
-const CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip','Other']
+const CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip']
 
 const AUTOFILL_PROMPT = `Extract this recipe and return ONLY valid JSON (no markdown, no backticks):
 {
@@ -267,10 +267,8 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
         <div className={styles.formRow}><label>Recipe Name</label><input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Grandma's Apple Pie"/></div>
         <div className={styles.grid3}>
           <div className={styles.formRow}><label>Category</label>
-            <select value={category} onChange={e => setCategory(e.target.value)}>
-              <option value="">Select…</option>
-              {CATEGORIES.map(c => <option key={c}>{c}</option>)}
-            </select>
+            <input list="category-list" value={category} onChange={e => setCategory(e.target.value)} placeholder="Select or type a new category…"/>
+            <datalist id="category-list">{CATEGORIES.map(c => <option key={c} value={c}/>)}</datalist>
           </div>
           <div className={styles.formRow}><label>Made by</label><input value={author} onChange={e => setAuthor(e.target.value)} placeholder="e.g. Grandma Rose"/></div>
           <div className={styles.formRow}><label>Base servings</label><input type="number" min="1" value={servings} onChange={e => setServings(e.target.value)}/></div>
