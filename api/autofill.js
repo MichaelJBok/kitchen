@@ -13,14 +13,16 @@ export default async function handler(req, res) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6',
         max_tokens: 2000,
         messages,
       }),
     })
 
     const data = await response.json()
-    res.status(200).json(data)
+    // Pass through Anthropic's status so real errors (bad model, auth, rate
+    // limit) surface instead of masquerading as an empty success.
+    res.status(response.status).json(data)
   } catch (err) {
     res.status(500).json({ error: err.message })
   }

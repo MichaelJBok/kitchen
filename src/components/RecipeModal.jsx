@@ -96,6 +96,9 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
         body: JSON.stringify({ messages }),
       })
       const data = await res.json()
+      if (!res.ok || data.error) {
+        throw new Error(data.error?.message || data.error || `Request failed (${res.status})`)
+      }
       const text = (data.content || []).map(b => b.text || '').join('').replace(/```json|```/g, '').trim()
       const parsed = JSON.parse(text)
       if (parsed.name) setName(parsed.name)
@@ -108,7 +111,7 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
       if (parsed.notes) setNotes(parsed.notes)
       setAiStatus('Done! Review and save.')
     } catch (err) {
-      setAiStatus('Error — check input and try again.')
+      setAiStatus(`Error: ${err.message}`)
     }
     setAiLoading(false)
   }
