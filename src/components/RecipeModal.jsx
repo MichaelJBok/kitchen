@@ -140,11 +140,14 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
       const ext = 'jpg'
       const path = `${Date.now()}.${ext}`
       const { error } = await supabase.storage.from('recipe-photos').upload(path, photoBlob, { contentType: 'image/jpeg' })
-      if (!error) {
-        const { data: urlData } = supabase.storage.from('recipe-photos').getPublicUrl(path)
-        photo_url = urlData.publicUrl
-        photo_path = path
+      if (error) {
+        setSaving(false)
+        alert(`Photo upload failed: ${error.message}`)
+        return
       }
+      const { data: urlData } = supabase.storage.from('recipe-photos').getPublicUrl(path)
+      photo_url = urlData.publicUrl
+      photo_path = path
     }
 
     const payload = {
@@ -160,13 +163,17 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
       photo_path,
     }
 
-    if (isEdit) {
-      await supabase.from('dishes').update(payload).eq('id', recipe.id)
-    } else {
-      await supabase.from('dishes').insert([payload])
-    }
+    const { error } = isEdit
+      ? await supabase.from('dishes').update(payload).eq('id', recipe.id)
+      : await supabase.from('dishes').insert([payload])
 
     setSaving(false)
+
+    if (error) {
+      alert(`Could not save recipe: ${error.message}`)
+      return
+    }
+
     onSaved()
   }
 
