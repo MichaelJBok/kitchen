@@ -7,8 +7,8 @@ Personal recipe app. React + Vite + Supabase + Vercel.
 ### 1. Supabase
 
 1. Create a new Supabase project at https://supabase.com
-2. Go to **SQL Editor** and paste + run the contents of `supabase/seed.sql`
-   - This creates the `recipes` table, disables RLS, seeds all 35 recipes, and creates the `recipe-photos` storage bucket
+2. Go to **SQL Editor** and paste + run the contents of `supabase/seed_dishes.sql`
+   - This creates the `dishes` table, disables RLS, seeds all 35 recipes, and creates the `recipe-photos` storage bucket
 3. Copy your project URL and anon key from **Settings → API**
 
 ### 2. Environment variables
@@ -54,7 +54,7 @@ Photos are uploaded to a public Supabase Storage bucket (`recipe-photos`). The `
 ## Data model
 
 ```sql
-recipes (
+dishes (
   id, created_at, name, category, author,
   tags text[],
   servings int,
