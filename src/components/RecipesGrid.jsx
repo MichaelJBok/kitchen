@@ -1,7 +1,7 @@
 import styles from './RecipesGrid.module.css'
 
 const DEFAULT_CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip','Other']
-const DEFAULT_COURSES = ['Main','Side','Appetizer','Dessert','Drink']
+const DEFAULT_COURSES = ['Main','Side','Appetizer','Condiment','Dessert','Drink']
 
 export default function RecipesGrid({ recipes, loading, search, setSearch, catFilter, setCatFilter, courseFilter, setCourseFilter, onOpenDetail, onToggleWant, onAddRecipe }) {
   return (

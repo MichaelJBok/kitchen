@@ -4,7 +4,7 @@ import { resizeImage } from '../lib/utils'
 import styles from './RecipeModal.module.css'
 
 const CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip']
-const COURSES = ['Main','Side','Appetizer','Dessert','Drink']
+const COURSES = ['Main','Side','Appetizer','Condiment','Dessert','Drink']
 
 const AUTOFILL_PROMPT = `Extract this recipe and return ONLY valid JSON (no markdown, no backticks):
 {
