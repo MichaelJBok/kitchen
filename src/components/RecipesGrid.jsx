@@ -43,11 +43,11 @@ export default function RecipesGrid({ recipes, loading, search, setSearch, catFi
 
       {loading ? (
         <div className={styles.loading}>Loading recipes…</div>
-      ) : (
+      ) : recipes.length === 0 ? (
+        <div className={styles.empty}>No recipes found.</div>
+      ) : courseFilter ? (
         <div className={styles.grid}>
-          {recipes.length === 0 ? (
-            <div className={styles.empty}>No recipes found.</div>
-          ) : recipes.map(r => (
+          {recipes.map(r => (
             <RecipeCard
               key={r.id}
               recipe={r}
@@ -56,9 +56,46 @@ export default function RecipesGrid({ recipes, loading, search, setSearch, catFi
             />
           ))}
         </div>
+      ) : (
+        groupByCourse(recipes).map(([course, group]) => (
+          <div key={course} className={styles.courseSection}>
+            <div className={styles.courseHeader}>
+              <span className={styles.courseDot} data-course={course}/>
+              <h2 className={styles.courseTitle}>{course}</h2>
+              <span className={styles.courseCount}>{group.length}</span>
+              <span className={styles.courseLine}/>
+            </div>
+            <div className={styles.grid}>
+              {group.map(r => (
+                <RecipeCard
+                  key={r.id}
+                  recipe={r}
+                  onClick={() => onOpenDetail(r.id)}
+                  onToggleWant={() => onToggleWant(r)}
+                />
+              ))}
+            </div>
+          </div>
+        ))
       )}
     </div>
   )
+}
+
+function groupByCourse(recipes) {
+  const groups = new Map()
+  recipes.forEach(r => {
+    const key = r.course || 'No Course'
+    if (!groups.has(key)) groups.set(key, [])
+    groups.get(key).push(r)
+  })
+  const extras = [...groups.keys()].filter(k => !DEFAULT_COURSES.includes(k) && k !== 'No Course').sort()
+  const orderedKeys = [
+    ...DEFAULT_COURSES.filter(c => groups.has(c)),
+    ...extras,
+    ...(groups.has('No Course') ? ['No Course'] : []),
+  ]
+  return orderedKeys.map(k => [k, groups.get(k)])
 }
 
 function RecipeCard({ recipe: r, onClick, onToggleWant }) {

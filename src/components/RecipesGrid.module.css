@@ -124,3 +124,42 @@
 }
 .tagCat { background: var(--accent-light); color: var(--accent); }
 .tagCourse { background: var(--surface); color: var(--ink); border: 1px solid var(--border); }
+
+.courseSection { margin-bottom: 4px; }
+.courseHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  margin: 26px 0 12px;
+}
+.toolbar + .courseSection .courseHeader { margin-top: 16px; }
+.courseDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--ink-faint);
+}
+.courseDot[data-course="Main"] { background: #C4501A; }
+.courseDot[data-course="Side"] { background: #6B8E4E; }
+.courseDot[data-course="Appetizer"] { background: #C9A227; }
+.courseDot[data-course="Condiment"] { background: #9B6B9E; }
+.courseDot[data-course="Dessert"] { background: #C4507A; }
+.courseDot[data-course="Drink"] { background: #4A82A0; }
+.courseTitle {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.courseCount {
+  font-size: 12px;
+  color: var(--ink-faint);
+  font-weight: 500;
+  background: var(--tag-bg);
+  padding: 1px 8px;
+  border-radius: 20px;
+}
+.courseLine { flex: 1; height: 1px; background: var(--border); }
