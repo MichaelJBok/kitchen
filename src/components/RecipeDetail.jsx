@@ -72,6 +72,7 @@ export default function RecipeDetail({ recipe: r, servings, setServings, onBack,
             <div className={styles.meta}>By {r.author}</div>
             <div className={styles.tags}>
               <span className={`${styles.tag} ${styles.tagCat}`}>{r.category}</span>
+              {r.course && <span className={`${styles.tag} ${styles.tagCourse}`}>{r.course}</span>}
               {(r.tags || []).map(t => <span key={t} className={styles.tag}>{t}</span>)}
             </div>
           </div>

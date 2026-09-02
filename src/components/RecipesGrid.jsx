@@ -1,8 +1,9 @@
 import styles from './RecipesGrid.module.css'
 
 const DEFAULT_CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip','Other']
+const DEFAULT_COURSES = ['Main','Side','Appetizer','Dessert','Drink']
 
-export default function RecipesGrid({ recipes, loading, search, setSearch, catFilter, setCatFilter, onOpenDetail, onToggleWant, onAddRecipe }) {
+export default function RecipesGrid({ recipes, loading, search, setSearch, catFilter, setCatFilter, courseFilter, setCourseFilter, onOpenDetail, onToggleWant, onAddRecipe }) {
   return (
     <div className={styles.view}>
       <div className={styles.toolbar}>
@@ -28,6 +29,14 @@ export default function RecipesGrid({ recipes, loading, search, setSearch, catFi
         >
           <option value="">All categories</option>
           {[...new Set([...DEFAULT_CATEGORIES, ...recipes.map(r => r.category).filter(Boolean)])].sort().map(c => <option key={c}>{c}</option>)}
+        </select>
+        <select
+          className={styles.select}
+          value={courseFilter}
+          onChange={e => setCourseFilter(e.target.value)}
+        >
+          <option value="">All courses</option>
+          {[...new Set([...DEFAULT_COURSES, ...recipes.map(r => r.course).filter(Boolean)])].sort().map(c => <option key={c}>{c}</option>)}
         </select>
         <button className={styles.addBtn} onClick={onAddRecipe}>+ Add Recipe</button>
       </div>
@@ -67,6 +76,7 @@ function RecipeCard({ recipe: r, onClick, onToggleWant }) {
       <div className={styles.cardMeta}>By {r.author} · {totalItems} ingredients</div>
       <div className={styles.tags}>
         <span className={`${styles.tag} ${styles.tagCat}`}>{r.category}</span>
+        {r.course && <span className={`${styles.tag} ${styles.tagCourse}`}>{r.course}</span>}
         {(r.tags || []).map(t => <span key={t} className={styles.tag}>{t}</span>)}
       </div>
     </div>

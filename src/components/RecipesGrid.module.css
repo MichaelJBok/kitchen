@@ -123,3 +123,4 @@
   border-radius: 20px;
 }
 .tagCat { background: var(--accent-light); color: var(--accent); }
+.tagCourse { background: var(--surface); color: var(--ink); border: 1px solid var(--border); }

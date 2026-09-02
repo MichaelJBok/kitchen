@@ -4,11 +4,13 @@ import { resizeImage } from '../lib/utils'
 import styles from './RecipeModal.module.css'
 
 const CATEGORIES = ['Bread','Breakfast','Burger & Sandwich','Chili & Stew','Condiment','Dessert','Mexican','Pasta','Pizza','Salad','Sauce & Dip']
+const COURSES = ['Main','Side','Appetizer','Dessert','Drink']
 
 const AUTOFILL_PROMPT = `Extract this recipe and return ONLY valid JSON (no markdown, no backticks):
 {
   "name":"...",
   "category":"...",
+  "course":"...",
   "author":"",
   "tags":[],
   "servings":4,
@@ -22,6 +24,7 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
   const isEdit = !!recipe
   const [name, setName] = useState(recipe?.name || '')
   const [category, setCategory] = useState(recipe?.category || '')
+  const [course, setCourse] = useState(recipe?.course || '')
   const [author, setAuthor] = useState(recipe?.author || '')
   const [servings, setServings] = useState(recipe?.servings || 4)
   const [tags, setTags] = useState(recipe?.tags?.join(', ') || '')
@@ -103,6 +106,7 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
       const parsed = JSON.parse(text)
       if (parsed.name) setName(parsed.name)
       if (parsed.category) setCategory(parsed.category)
+      if (parsed.course) setCourse(parsed.course)
       if (parsed.author) setAuthor(parsed.author)
       if (parsed.servings) setServings(parsed.servings)
       if (parsed.tags) setTags(parsed.tags.join(', '))
@@ -153,6 +157,7 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
     const payload = {
       name: name.trim(),
       category,
+      course,
       author: author.trim(),
       servings: Number(servings) || 4,
       tags: tags.split(',').map(t => t.trim()).filter(Boolean),
@@ -275,10 +280,14 @@ export default function RecipeModal({ recipe, onSaved, onClose }) {
 
         {/* Basic fields */}
         <div className={styles.formRow}><label>Recipe Name</label><input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Grandma's Apple Pie"/></div>
-        <div className={styles.grid3}>
+        <div className={styles.grid4}>
           <div className={styles.formRow}><label>Category</label>
             <input list="category-list" value={category} onChange={e => setCategory(e.target.value)} placeholder="Select or type a new category…"/>
             <datalist id="category-list">{CATEGORIES.map(c => <option key={c} value={c}/>)}</datalist>
+          </div>
+          <div className={styles.formRow}><label>Course</label>
+            <input list="course-list" value={course} onChange={e => setCourse(e.target.value)} placeholder="Select or type a new course…"/>
+            <datalist id="course-list">{COURSES.map(c => <option key={c} value={c}/>)}</datalist>
           </div>
           <div className={styles.formRow}><label>Made by</label><input value={author} onChange={e => setAuthor(e.target.value)} placeholder="e.g. Grandma Rose"/></div>
           <div className={styles.formRow}><label>Base servings</label><input type="number" min="1" value={servings} onChange={e => setServings(e.target.value)}/></div>

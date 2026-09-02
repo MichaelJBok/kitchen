@@ -9,6 +9,7 @@ create table if not exists public.dishes (
   created_at    timestamptz default now() not null,
   name          text not null,
   category      text,
+  course        text,
   author        text,
   tags          text[]   default '{}',
   servings      int      default 4,
@@ -19,6 +20,9 @@ create table if not exists public.dishes (
   photo_path    text,
   want_try      boolean  default false
 );
+
+-- 1b. Add the course column if the table already existed (safe to re-run)
+alter table public.dishes add column if not exists course text;
 
 -- 2. Disable RLS (single-user app, passphrase gated)
 alter table public.dishes disable row level security;

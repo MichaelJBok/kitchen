@@ -4,7 +4,7 @@ export async function copyRecipeText(r, servings, factor) {
   const base = r.servings || 4
   const lines = []
   lines.push(r.name)
-  lines.push('By ' + r.author + (r.category ? ' - ' + r.category : ''))
+  lines.push('By ' + r.author + (r.category ? ' - ' + r.category : '') + (r.course ? ' - ' + r.course : ''))
   lines.push(servings !== base ? `Servings: ${servings} (scaled from ${base})` : `Servings: ${servings}`)
   lines.push('')
   lines.push('INGREDIENTS')
@@ -129,6 +129,7 @@ export async function copyRecipeImage(r, servings, factor) {
       tx += tw + 6
     }
     drawTag(r.category, C.accentLight, C.accent)
+    if (r.course) drawTag(r.course, C.surface, C.muted)
     ;(r.tags || []).forEach(t => drawTag(t, C.surface, C.muted))
     y += 28
 

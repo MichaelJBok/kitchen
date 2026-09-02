@@ -11,6 +11,7 @@
 .formRow input:focus, .formRow textarea:focus { border-color: var(--accent); }
 
 .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
 
 .photoArea { border: 1.5px dashed var(--border-hover); border-radius: 10px; overflow: hidden; cursor: pointer; position: relative; min-height: 80px; }
 .photoArea:hover { border-color: var(--accent); }

@@ -15,6 +15,7 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [catFilter, setCatFilter] = useState('')
+  const [courseFilter, setCourseFilter] = useState('')
   const [activeRecipeId, setActiveRecipeId] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
   const [editingRecipe, setEditingRecipe] = useState(null)
@@ -79,7 +80,8 @@ export default function App() {
       r.author.toLowerCase().includes(q) ||
       (r.tags || []).some(t => t.toLowerCase().includes(q))
     const matchC = !catFilter || r.category === catFilter
-    return matchQ && matchC
+    const matchCourse = !courseFilter || r.course === courseFilter
+    return matchQ && matchC && matchCourse
   })
 
   const activeRecipe = recipes.find(r => r.id === activeRecipeId) || null
@@ -102,6 +104,8 @@ export default function App() {
           setSearch={setSearch}
           catFilter={catFilter}
           setCatFilter={setCatFilter}
+          courseFilter={courseFilter}
+          setCourseFilter={setCourseFilter}
           onOpenDetail={openDetail}
           onToggleWant={toggleWant}
           onAddRecipe={() => openModal()}
