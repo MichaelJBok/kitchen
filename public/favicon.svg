@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g fill="#2A1F14">
-    <rect x="15" y="10" width="13" height="44" rx="2"/>
-    <polygon points="28,32 28,10 50,10 35,32"/>
-    <polygon points="28,32 28,54 50,54 35,32"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#EFE3D0"/>
+  <path d="M120 236 H392 V334 Q392 410 316 410 H196 Q120 410 120 334 Z" fill="#3D2B1F"/>
+  <rect x="80" y="258" width="56" height="32" rx="16" fill="#3D2B1F"/>
+  <rect x="376" y="258" width="56" height="32" rx="16" fill="#3D2B1F"/>
+  <path d="M124 218 C146 156 366 156 388 218 Z" fill="#D97757"/>
+  <circle cx="256" cy="150" r="22" fill="#D97757"/>
 </svg>
